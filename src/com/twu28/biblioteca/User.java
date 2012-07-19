@@ -11,9 +11,12 @@ public class User {
     private String Name;
     private char Gender;
     private int Age;
+
+
+
     private Library MemberofLibrary;    //In this case Assumed that A person will not be member of more than 1 Library
     private long LibraryNumber;
-    private Book[] booksTaken;
+    private Book[] booksTaken = new Book[MAX_NO_OF_BOOKS_A_USER_CAN_HAVE];
     int noOfBooksTaken;
     private static final int MAX_NO_OF_BOOKS_A_USER_CAN_HAVE = 3 ;
 
@@ -33,7 +36,7 @@ public class User {
     }
 
     private void setBooksTaken() {
-        booksTaken = new Book[MAX_NO_OF_BOOKS_A_USER_CAN_HAVE];
+
         for (int i = 0 ; i < booksTaken.length ; i++){
             booksTaken[i] = null;
         }
@@ -45,6 +48,18 @@ public class User {
         this.setAge(0);
         this.setMemberofLibrary(null);
         this.setLibraryNumber(0);
+        this.setBooksTaken();
+        this.setNoOfBooksTaken(0);
+
+        return;
+    }
+
+    public User(long libraryNumber) {
+        this.setName(" ");
+        this.setGender(' ');
+        this.setAge(0);
+        this.setMemberofLibrary(null);
+        this.setLibraryNumber(libraryNumber);
         this.setBooksTaken();
         this.setNoOfBooksTaken(0);
 
@@ -101,5 +116,27 @@ public class User {
         System.out.println("Name-->" + this.Name + "\tLibrary ID-->" + this.LibraryNumber +
                            "\tGender-->" + this.Gender + "\tAge-->" + this.Age);
         return true;
+    }
+
+    public boolean viewAllBooksInMyLibrary() {
+        return MemberofLibrary.displayAllBooks();
+    }
+
+    public boolean reserveBookInLibrary(String UserRequestedISBN) {
+        boolean status = MemberofLibrary.reserveBook(UserRequestedISBN);
+        if(status == true){
+
+            Book bookobjectTakenByThisUser = new Book(UserRequestedISBN);
+            this.setBooksTaken(bookobjectTakenByThisUser);
+            this.noOfBooksTaken++;
+        }
+        return status;
+    }
+
+    private void setBooksTaken(Book bookobjectTakenByThisUser) {
+        this.booksTaken[this.noOfBooksTaken] = bookobjectTakenByThisUser;
+    }
+    public Library getMemberofLibrary() {
+        return MemberofLibrary;
     }
 }

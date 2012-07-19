@@ -3,6 +3,7 @@ package com.twu28.biblioteca;
 import org.junit.Test;
 
 import static junit.framework.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,21 +23,67 @@ public class UserTest {
     @Test
     public void canANewUserBeAMemberOfTheLibrary(){
         User userObject = new User("SampleName",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
-        Library libraryOjbect = new Library();
+        Library libraryobject = new Library();
 
         assertNotNull(userObject);
-        assertTrue(userObject.addTothisLibrary(libraryOjbect));
+        assertTrue(userObject.addTothisLibrary(libraryobject));
 
     }
 
     @Test
     public void canViewUserDetailsRecordedInLibrary(){
         User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
-        Library libraryOjbect = new Library();
+        Library libraryobject = new Library();
 
         assertNotNull(userObject);
-        assertTrue(userObject.addTothisLibrary(libraryOjbect));
-        assertTrue(userObject.viewMyProfileInTheLibrary(libraryOjbect));
+        assertTrue(userObject.addTothisLibrary(libraryobject));
+        assertTrue(userObject.viewMyProfileInTheLibrary(libraryobject));
 
     }
+
+    @Test
+    public void canUserViewAllTheBooksInTheLibrary(){
+        User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
+        Library libraryobject = new Library();
+
+        Book[] bookobjects = new Book[2];
+        bookobjects[0] = new Book("1234567890123","SampleTitle","SampleAuthor","SamplePublisher",1,2012,5);
+        bookobjects[1] = new Book("3210987654321","SamplTitle1","SamplAuthor1","SamplPublisher1",1,2011,3);
+        libraryobject.addBook(bookobjects);
+
+        assertNotNull(userObject);
+        assertTrue(userObject.addTothisLibrary(libraryobject));
+        assertTrue(userObject.viewAllBooksInMyLibrary());
+    }
+
+    @Test
+    public void canUserReserveABookInTheLibrary(){
+        User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
+        Library libraryobject = new Library();
+
+        Book[] bookobjects = new Book[2];
+        bookobjects[0] = new Book("1234567890123","SampleTitle","SampleAuthor","SamplePublisher",1,2012,5);
+        bookobjects[1] = new Book("3210987654321","SamplTitle1","SamplAuthor1","SamplPublisher1",1,2011,3);
+        libraryobject.addBook(bookobjects);
+
+        assertNotNull(userObject);
+        assertTrue(userObject.addTothisLibrary(libraryobject));
+        assertTrue(userObject.reserveBookInLibrary("1234567890123"));  //Must Specify ISBN Number
+    }
+    /*
+    @Test
+    public void canUserReserveABookInTheLibrary(){
+        User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
+        Library libraryobject = new Library();
+
+        Book[] bookobjects = new Book[2];
+        bookobjects[0] = new Book("1234567890123","SampleTitle","SampleAuthor","SamplePublisher",1,2012,5);
+        bookobjects[1] = new Book("3210987654321","SamplTitle1","SamplAuthor1","SamplPublisher1",1,2011,3);
+        libraryobject.addBook(bookobjects);
+
+        assertNotNull(userObject);
+        assertTrue(userObject.addTothisLibrary(libraryobject));
+        assertTrue(userObject.reserveBookInLibrary("1234567890123"));  //Must Specify ISBN Number
+    } */
+
 }
