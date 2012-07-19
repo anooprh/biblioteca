@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Library {
 
     private ArrayList<Book> book_database = new ArrayList<Book>();
+    private ArrayList<User> user_database = new ArrayList<User>();
 
     public boolean addBook(Book bookObject) {
 
@@ -35,16 +36,26 @@ public class Library {
         return(book_database.add(bookObject));
     }
 
-    public boolean reserveBook(String UserRequestedISBN) {
-        return true;
-    }
-
-    public boolean findBook(String UserRequestedISBN) {
-        return true;
+     public int findBook(String UserRequestedISBN) {     //Checks if the Book is Present in the database/If
+                                                         //Present It returns an index to that book,else returns -1
+        int location;
+        boolean[] status = new  boolean[book_database.size()];
+        boolean finalstatus = false;
+        for(int i = 0 ; i < book_database.size() ; i++){
+            status[i] = (book_database.get(i)).amIHavingThisISBNNumber(UserRequestedISBN);
+            if(status[i] == true){
+                finalstatus = true;
+                location = i;
+                return location;
+            }
+        }
+        location = -1;
+        return location;
     }
 
     public boolean displayAllBooks() {
 
+        System.out.println("---This is the DataBase Of all the Books in the library---");
         System.out.println("ISBN\t\t\t\tTitle\t\t\tAuthor\t\t\t\tPublisher\t\tEdition\t\t" +
                             "Year Of Publ\tNo Of Copies");
         boolean[] status = new  boolean[book_database.size()];
@@ -57,5 +68,60 @@ public class Library {
         return finalstatus;
     }
 
+    public boolean reserveBook(String UserRequestedISBN) {
+        int location = findBook(UserRequestedISBN);            //Check the Books Availability in DataBase.
+                                                               //If Present Return its index,else return -1
+        if(location == -1){      //Book Not Present in DataBase
+            //System.out.println("Sorry!! This Book is Not Present in The DataBase");
+            return  false;
+        }
+        return book_database.get(location).reserveOneCopyOfThisBook();
+    }
 
+    public boolean addNewMember(User userbject) {
+        boolean status = addToDataBase(userbject);
+        return status;
+    }
+
+    public boolean addNewMember(User[] userobjects) {
+        boolean status[] = new boolean[userobjects.length];
+        boolean finalStatus = true;
+        for(int i = 0 ; i < userobjects.length ; i++){
+            status[i] = addToDataBase(userobjects[i]);
+            if(status[i] != true)
+                finalStatus = false;
+        }
+        return finalStatus;
+    }
+
+    private boolean addToDataBase(User userbject) {
+        return user_database.add(userbject);
+    }
+
+    public int findUser(long libraryID) {
+        int location;
+        boolean[] status = new  boolean[user_database.size()];
+        boolean finalstatus = false;
+        for(int i = 0 ; i < user_database.size() ; i++){
+            status[i] = (user_database.get(i)).amIHavingThisLIBRARYIDNumber(libraryID);
+            if(status[i] == true){
+                finalstatus = true;
+                location = i;
+                return location;
+            }
+        }
+        location = -1;
+        return location;
+    }
+
+
+    public boolean displayUserProfile(long libraryNumber) {
+        int location = findUser(libraryNumber);
+        if(location == -1){
+            //System.out.println("This Member is Not Registered in Library");
+            return false;
+        }
+
+        return user_database.get(location).displayDetails();
+    }
 }

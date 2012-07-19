@@ -18,4 +18,25 @@ public class UserTest {
         User userObject1 = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
         assertNotNull(userObject1);
     }
+
+    @Test
+    public void canANewUserBeAMemberOfTheLibrary(){
+        User userObject = new User("SampleName",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
+        Library libraryOjbect = new Library();
+
+        assertNotNull(userObject);
+        assertTrue(userObject.addTothisLibrary(libraryOjbect));
+
+    }
+
+    @Test
+    public void canViewUserDetailsRecordedInLibrary(){
+        User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
+        Library libraryOjbect = new Library();
+
+        assertNotNull(userObject);
+        assertTrue(userObject.addTothisLibrary(libraryOjbect));
+        assertTrue(userObject.viewMyProfileInTheLibrary(libraryOjbect));
+
+    }
 }

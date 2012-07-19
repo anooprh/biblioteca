@@ -109,14 +109,31 @@ public class Book {
     }
 
     public boolean displayBookDetails() {
-        System.out.print(this.ISBNNumber+"\t\t");
-        System.out.print(this.Title+"\t\t");
-        System.out.print(this.Author+"\t\t");
-        System.out.print(this.Publisher+"\t\t");
-        System.out.print(this.Edition+"\t\t");
-        System.out.print(this.YearOfPublication+"\t\t");
-        System.out.print(this.NumberOfCopies+"\t\t");
+        System.out.print(this.ISBNNumber + "\t\t");
+        System.out.print(this.Title + "\t\t");
+        System.out.print(this.Author + "\t\t");
+        System.out.print(this.Publisher + "\t\t");
+        System.out.print(this.Edition + "\t\t");
+        System.out.print(this.YearOfPublication + "\t\t");
+        System.out.print(this.NumberOfCopies + "\t\t");
         System.out.print("\n");
         return true;
+    }
+
+
+    public boolean amIHavingThisISBNNumber(String userRequestedISBN) {
+        if(this.ISBNNumber.equals(userRequestedISBN))
+            return  true;
+        else
+            return false;
+    }
+
+    public boolean reserveOneCopyOfThisBook() {
+        if(this.getAvailability() == true){
+            this.setNumberOfCopies(this.NumberOfCopies - 1);
+            return true;
+        }
+        else
+            return false;
     }
 }
