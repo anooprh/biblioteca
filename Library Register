@@ -1,0 +1,50 @@
+This File Contains the Built In DataBase of the Library
+
+Users:
+--------------------------------------------------------------------------------------------
+   UserName            Gender          Age         Library Number          Password
+--------------------------------------------------------------------------------------------
+    Name0                'M'            20              1234430             Password0
+    Name1                'F'            21              1234431             Password1
+    Name2                'M'            22              1234432             Password2
+    Name3                'F'            23              1234433             Password3
+    Name4                'M'            24              1234434             Password4
+    Name5                'F'            25              1234435             Password5
+    Name6                'M'            26              1234436             Password6
+    Name7                'F'            27              1234437             Password7
+    Name8                'M'            28              1234438             Password8
+    Name9                'F'            29              1234439             Password9
+--------------------------------------------------------------------------------------------
+
+Books:
+-------------------------------------------------------------------------------------------------------
+     ISBN           Title           Author      Publisher       Edition     Year        No Of Copies
+-------------------------------------------------------------------------------------------------------
+1234567890000       Title0          Author0     Publisher0         1        2000             4
+1234567890001       Title1          Author1     Publisher1         2        2001             5
+1234567890002       Title2          Author2     Publisher2         3        2002             6
+1234567890003       Title3          Author3     Publisher3         4        2003             7
+1234567890004       Title4          Author4     Publisher4         5        2004             8
+1234567890005       Title5          Author5     Publisher5         6        2005             9
+1234567890006       Title6          Author6     Publisher6         7        2006             10
+1234567890007       Title7          Author7     Publisher7         8        2007             11
+1234567890008       Title8          Author8     Publisher8         9        2008             12
+1234567890009       Title9          Author9     Publisher9         10       2009             13
+
+------------------------------------------------------------------------------------------------------
+
+    Movies:
+-----------------------------------
+   MovieName           Director
+-----------------------------------
+   MovieName0        DirectorName0
+   MovieName1        DirectorName1
+   MovieName2        DirectorName2
+   MovieName3        DirectorName3
+   MovieName4        DirectorName4
+   MovieName5        DirectorName5
+   MovieName6        DirectorName6
+   MovieName7        DirectorName7
+   MovieName8        DirectorName8
+   MovieName9        DirectorName9
+-----------------------------------

@@ -1,6 +1,7 @@
 package com.twu28.biblioteca;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,6 +16,31 @@ public class Library {
     private ArrayList<User> user_database = new ArrayList<User>();
     private ArrayList<Movie> movie_database = new ArrayList<Movie>();
 
+    public Library() {      //Initially create a Data Base of Members,Books and Movies
+        for(int i = 0 ; i < 9 ; i++){
+           User user = new User("Name" + i,((i % 2) == 0?'M':'F'),20+i,1234430+i,"Password" + i);
+           user.addTothisLibrary(this);
+
+           Book book = new Book("123456789000" + i,"Title" + i,"Author" + i,"Publisher" + i,i+1,2000+i,4+i);
+           this.addBook(book);
+
+
+
+        }
+        Movie [] movieobjects = new Movie[10];
+        Random random = new Random();
+        for (int i = 0 ; i < movieobjects.length ; i++){
+            boolean whetherNA = random.nextBoolean();
+            if(whetherNA == true){
+                movieobjects[i] = new Movie("MovieName" + i,"DirectorName"+ i);
+            }
+            else{
+                movieobjects[i] = new Movie("MovieName" + i,"DirectorName"+ i, (random.nextInt(10) + 1));
+            }
+        }
+        this.addMovie(movieobjects);
+
+    }
 
     public boolean addBook(Book bookObject) {
 
@@ -97,6 +123,7 @@ public class Library {
     }
 
     private boolean addToDataBase(User userbject) {
+        //userbject.addTothisLibrary(this);
         return user_database.add(userbject);
     }
 
@@ -114,6 +141,39 @@ public class Library {
         }
         location = -1;
         return location;
+    }
+
+    /*public boolean findUser(User user) {
+        int location;
+        boolean[] status = new  boolean[user_database.size()];
+        boolean finalstatus = false;
+        for(int i = 0 ; i < user_database.size() ; i++){
+            status[i] = (user_database.get(i)).equals(user);
+            if(status[i] == true){
+                finalstatus = true;
+                location = i;
+                break;
+            }
+        }
+        location = -1;
+        return finalstatus;
+    }   */
+
+    public User findUser(User user) {
+        int location;
+        boolean[] status = new  boolean[user_database.size()];
+        boolean finalstatus = false;
+        for(int i = 0 ; i < user_database.size() ; i++){
+            //status[i] = (user_database.get(i)).equals(user);
+            status[i] = user.equals(user_database.get(i));
+            if(status[i] == true){
+                finalstatus = true;
+                location = i;
+                return user_database.get(location);
+            }
+        }
+        location = -1;
+        return null;
     }
 
 

@@ -11,7 +11,7 @@ public class User {
     private String Name;
     private char Gender;
     private int Age;
-
+    private String password;
 
 
     private Library MemberofLibrary;    //In this case Assumed that A person will not be member of more than 1 Library
@@ -28,6 +28,54 @@ public class User {
         this.setLibraryNumber(LibraryNumber);
         this.setBooksTaken();
         this.setNoOfBooksTaken(0);
+        this.setPassword(" ");
+        return;
+    }
+
+    public User(String Name, char Gender, int Age, long LibraryNumber,String password) {
+        this.setName(Name);
+        this.setGender(Gender);
+        this.setAge(Age);
+        this.setMemberofLibrary(null);
+        this.setLibraryNumber(LibraryNumber);
+        this.setBooksTaken();
+        this.setNoOfBooksTaken(0);
+        this.setPassword(password);
+        return;
+    }
+
+    public User() {
+        this.setName(" ");
+        this.setGender(' ');
+        this.setAge(0);
+        this.setMemberofLibrary(null);
+        this.setLibraryNumber(0);
+        this.setBooksTaken();
+        this.setNoOfBooksTaken(0);
+        this.setPassword(" ");
+        return;
+    }
+
+    public User(long libraryNumber) {
+        this.setName(" ");
+        this.setGender(' ');
+        this.setAge(0);
+        this.setMemberofLibrary(null);
+        this.setLibraryNumber(libraryNumber);
+        this.setBooksTaken();
+        this.setNoOfBooksTaken(0);
+        this.setPassword(" ");
+        return;
+    }
+    public User(long librarynumber,String password) {
+        this.setName(" ");
+        this.setGender(' ');
+        this.setAge(0);
+        this.setMemberofLibrary(null);
+        this.setLibraryNumber(librarynumber);
+        this.setBooksTaken();
+        this.setNoOfBooksTaken(0);
+        this.setPassword(password);
         return;
     }
 
@@ -40,30 +88,6 @@ public class User {
         for (int i = 0 ; i < booksTaken.length ; i++){
             booksTaken[i] = null;
         }
-    }
-
-    public User() {
-        this.setName(" ");
-        this.setGender(' ');
-        this.setAge(0);
-        this.setMemberofLibrary(null);
-        this.setLibraryNumber(0);
-        this.setBooksTaken();
-        this.setNoOfBooksTaken(0);
-
-        return;
-    }
-
-    public User(long libraryNumber) {
-        this.setName(" ");
-        this.setGender(' ');
-        this.setAge(0);
-        this.setMemberofLibrary(null);
-        this.setLibraryNumber(libraryNumber);
-        this.setBooksTaken();
-        this.setNoOfBooksTaken(0);
-
-        return;
     }
 
     private void setMemberofLibrary(Library libraryobject) {
@@ -91,6 +115,9 @@ public class User {
         return;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public boolean addTothisLibrary(Library libraryOjbect) {
         this.setMemberofLibrary(libraryOjbect);
@@ -113,8 +140,13 @@ public class User {
     }
 
     public boolean displayDetails() {
-        System.out.println("Name-->" + this.Name + "\tLibrary ID-->" + this.LibraryNumber +
+        System.out.println("Name-->" + this.Name +
                            "\tGender-->" + this.Gender + "\tAge-->" + this.Age);
+        if(this.getLibraryIDNumber() == 0)
+            System.out.println("Please Talk To The Librarian");
+        else
+            System.out.println("Your Library Id ---> " + this.getLibraryIDNumber());
+
         return true;
     }
 
@@ -142,5 +174,25 @@ public class User {
 
     public boolean displayMoviesList() {
         return getMemberofLibrary().viewMovieDataBase();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (LibraryNumber != user.LibraryNumber) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = password != null ? password.hashCode() : 0;
+        result = 31 * result + (int) (LibraryNumber ^ (LibraryNumber >>> 32));
+        return result;
     }
 }

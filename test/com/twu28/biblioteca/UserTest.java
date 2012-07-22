@@ -86,4 +86,13 @@ public class UserTest {
         assertTrue(userObject.reserveBookInLibrary("1234567890123"));  //Must Specify ISBN Number
     } */
 
+    @Test
+    public void testEqualityOfTwoUserObjects(){
+        User userObject1 = new User("Sample Name",'M',25,1232234,"password1");  //User Details - Name,Gender,Age,Library Number,Password
+        User userObject2 = new User(1232234,"password1");
+        User userObject3 = new User(1232294,"password1");
+        assertTrue(userObject1.equals(userObject2));
+        assertFalse(userObject1.equals(userObject3));
+    }
+
 }

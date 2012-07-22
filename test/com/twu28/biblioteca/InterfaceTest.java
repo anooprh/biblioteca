@@ -137,4 +137,23 @@ public class InterfaceTest {
 
     }
 
+    @Test
+    public void canShowLoginOptions(){
+
+        Interface console = new Interface();
+        assertTrue(console.showLoginOptions());
+
+    }
+
+    @Test
+    public void canWaitLoginOptions(){
+
+        Interface console = new Interface();
+        assertTrue(console.showLoginOptions());
+        assertNotSame(0,console.waitForLoginType());
+
+    }
+
+
+
 }
