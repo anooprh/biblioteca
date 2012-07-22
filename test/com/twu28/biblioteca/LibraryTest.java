@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
+import java.util.Random;
+
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
@@ -115,5 +117,51 @@ public class LibraryTest {
         assertNotSame(-1, index);
 
     }
+
+    @Test
+    public void canAddAMovieToTheDataBase(){
+
+        Movie [] movieobjects = new Movie[15];
+        Random random = new Random();
+        for (int i = 0 ; i < movieobjects.length ; i++){
+            boolean whetherNA = random.nextBoolean();
+            if(whetherNA == true)
+                movieobjects[i] = new Movie("MovieName" + i,"DirectorName"+ i);
+            else
+                movieobjects[i] = new Movie("MovieName" + i,"DirectorName"+ i, (random.nextInt() % 10) + 1);
+        }
+
+
+
+        Library libraryobject = new Library();
+
+        assertTrue(libraryobject.addMovie(movieobjects));
+
+    }
+
+    @Test
+    public void canViewMovieDataBase(){
+
+        Movie [] movieobjects = new Movie[15];
+        Random random = new Random();
+        for (int i = 0 ; i < movieobjects.length ; i++){
+            boolean whetherNA = random.nextBoolean();
+            if(whetherNA == true){
+                movieobjects[i] = new Movie("MovieName" + i,"DirectorName"+ i);
+            }
+            else{
+                movieobjects[i] = new Movie("MovieName" + i,"DirectorName"+ i, (random.nextInt(10) + 1));
+            }
+        }
+
+
+
+        Library libraryobject = new Library();
+
+        assertTrue(libraryobject.addMovie(movieobjects));
+        assertTrue(libraryobject.viewMovieDataBase());
+
+    }
+
 
 }

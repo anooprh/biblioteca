@@ -23,8 +23,9 @@ public class Interface {
     public void showMenu() {
         showMessage("1.Display All Books in Library");
         showMessage("2.Reserve A Book in The Library");
-        showMessage("3.View My Profile");
-        showMessage("4.Exit");
+        showMessage("3.Display Movies in The Library");
+        showMessage("4.View My Profile");
+        showMessage("5.Exit");
     }
 
     public boolean displayBooksInLibrary(User userObject) {
@@ -78,14 +79,21 @@ public class Interface {
                 this.reserveBookInLibrary(user);
                 break;
             case 2:
-                this.viewUsersProfile(user);
+                this.viewMovieList(user);
                 break;
             case 3:
+                this.viewUsersProfile(user);
+                break;
+            case 4:
                 this.quitProgram();
                 break;
             default:
                 this.showMessage("Please Select A Valid Menu Option") ;
         }
         return true;
+    }
+
+    public boolean viewMovieList(User user) {
+        return user.displayMoviesList();
     }
 }

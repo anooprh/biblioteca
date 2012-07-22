@@ -139,4 +139,8 @@ public class User {
     public Library getMemberofLibrary() {
         return MemberofLibrary;
     }
+
+    public boolean displayMoviesList() {
+        return getMemberofLibrary().viewMovieDataBase();
+    }
 }

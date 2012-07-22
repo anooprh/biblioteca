@@ -3,6 +3,8 @@ package com.twu28.biblioteca;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Random;
+
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.*;
@@ -68,7 +70,35 @@ public class InterfaceTest {
     }
 
     @Test
-    public void menuOptionTHREESelectedToViewProfile(){
+    public void menuOptionTHREESelectedToViewMovies(){
+
+        Interface console = new Interface();
+
+        Movie [] movieobjects = new Movie[15];
+        Random random = new Random();
+        for (int i = 0 ; i < movieobjects.length ; i++){
+            boolean whetherNA = random.nextBoolean();
+            if(whetherNA == true){
+                movieobjects[i] = new Movie("MovieName" + i,"DirectorName"+ i);
+            }
+            else{
+                movieobjects[i] = new Movie("MovieName" + i,"DirectorName"+ i, (random.nextInt(10) + 1));
+            }
+        }
+
+
+        User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
+        Library libraryobject = new Library();
+        libraryobject.addMovie(movieobjects);
+        userObject.addTothisLibrary(libraryobject);
+
+
+        assertTrue(console.viewMovieList(userObject));
+
+    }
+
+    @Test
+    public void menuOptionFOURSelectedToViewProfile(){
 
         Interface console = new Interface();
 
@@ -78,13 +108,14 @@ public class InterfaceTest {
         assertNotNull(userObject);
         userObject.addTothisLibrary(libraryobject);
 
+
         assertTrue(console.viewUsersProfile(userObject));     //In Actual Case UserOjbect will be the person who
                                                                     //logged into his account
 
     }
 
     @Test
-    public void menuOptionFOURToExit(){
+    public void menuOptionFIVEToExit(){
 
         Interface console = new Interface();
 

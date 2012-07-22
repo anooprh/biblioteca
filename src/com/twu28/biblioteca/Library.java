@@ -13,6 +13,8 @@ public class Library {
 
     private ArrayList<Book> book_database = new ArrayList<Book>();
     private ArrayList<User> user_database = new ArrayList<User>();
+    private ArrayList<Movie> movie_database = new ArrayList<Movie>();
+
 
     public boolean addBook(Book bookObject) {
 
@@ -123,5 +125,33 @@ public class Library {
         }
 
         return user_database.get(location).displayDetails();
+    }
+
+    public boolean addMovie(Movie[] movieobjects) {
+
+        boolean status[] = new boolean[movieobjects.length];
+        boolean finalStatus = true;
+        for(int i = 0 ; i < movieobjects.length ; i++){
+            status[i] = addToDataBase(movieobjects[i]);
+            if(status[i] != true)
+                finalStatus = false;
+        }
+        return finalStatus;
+    }
+
+    private boolean addToDataBase(Movie movieobject) {
+        return movie_database.add(movieobject);
+    }
+
+    public boolean viewMovieDataBase() {
+        boolean status[] = new boolean[movie_database.size()];
+        boolean finalStatus = true;
+        System.out.println("Movie\tDirector\trating");
+        for(int i = 0 ; i < movie_database.size() ; i++){
+            status[i] = movie_database.get(i).viewMovieDetails();
+            if(status[i] != true)
+                finalStatus = false;
+        }
+        return finalStatus;  //To change body of created methods use File | Settings | File Templates.
     }
 }
