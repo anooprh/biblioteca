@@ -1,13 +1,12 @@
 package com.twu28.biblioteca;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Random;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotSame;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +19,7 @@ public class InterfaceTest {
     @Test
     public void canWelcomeScreenBeSeen(){
         Interface console = new Interface();
+        console.setTestRun();
         assertNotSame(-1,console.showMessage("Welcome to The Library"));
 
     }
@@ -27,6 +27,7 @@ public class InterfaceTest {
     @Test
     public void canWeSeeTheMenu(){
         Interface console = new Interface();
+        console.setTestRun();
         console.showMenu();
 
     }
@@ -35,7 +36,7 @@ public class InterfaceTest {
     public void menuOptionONESelectedToDisplayBooks(){
 
         Interface console = new Interface();
-
+        console.setTestRun();
         User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
         Library libraryobject = new Library();
 
@@ -53,7 +54,7 @@ public class InterfaceTest {
     public void menuOptionTWOSelectedToReserveBooks(){
 
         Interface console = new Interface();
-
+        console.setTestRun();
         User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
         Library libraryobject = new Library();
 
@@ -73,7 +74,7 @@ public class InterfaceTest {
     public void menuOptionTHREESelectedToViewMovies(){
 
         Interface console = new Interface();
-
+        console.setTestRun();
         Movie [] movieobjects = new Movie[15];
         Random random = new Random();
         for (int i = 0 ; i < movieobjects.length ; i++){
@@ -101,7 +102,7 @@ public class InterfaceTest {
     public void menuOptionFOURSelectedToViewProfile(){
 
         Interface console = new Interface();
-
+        console.setTestRun();
         User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
         Library libraryobject = new Library();
 
@@ -118,7 +119,7 @@ public class InterfaceTest {
     public void menuOptionFIVEToExit(){
 
         Interface console = new Interface();
-
+        console.setTestRun();
         assertTrue(console.quitProgram());
 
     }
@@ -127,6 +128,7 @@ public class InterfaceTest {
     public void canSelectMenuOption(){
 
         Interface console = new Interface();
+        console.setTestRun();
         Library libraryobject = new Library();
 
         User userObject = new User("Sample Name",'M',25,1232);  //User Details - Name,Gender,Age,Library Number
@@ -141,6 +143,7 @@ public class InterfaceTest {
     public void canShowLoginOptions(){
 
         Interface console = new Interface();
+        console.setTestRun();
         assertTrue(console.showLoginOptions());
 
     }
@@ -149,11 +152,10 @@ public class InterfaceTest {
     public void canWaitLoginOptions(){
 
         Interface console = new Interface();
+        console.setTestRun();
         assertTrue(console.showLoginOptions());
         assertNotSame(0,console.waitForLoginType());
 
     }
-
-
 
 }

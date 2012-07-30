@@ -2,9 +2,7 @@ package com.twu28.biblioteca;
 
 import org.junit.Test;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.*;
 
 /**
  * Created with IntelliJ IDEA.

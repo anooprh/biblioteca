@@ -12,7 +12,8 @@ import java.util.Scanner;
  */
 public class Interface {
 
-    private final boolean TESTRUN = false;
+    private  boolean TESTRUN = false;
+
     private static final int NO_OF_MENU_OPTIONS = 4;
     private long libraryID;
     private String password;
@@ -155,7 +156,7 @@ public class Interface {
         showMessage("1.Display All Books in Library");
         showMessage("2.Reserve A Book in The Library--------NOT AVAILABLEFOR GUEST!!SORRY");
         showMessage("3.Display Movies in The Library");
-        showMessage("4.View My Profile--------NOT AVAILABLEFOR GUEST!!SORRY");
+        showMessage("4.View My Profile");
         showMessage("5.Exit");
 
     }
@@ -183,6 +184,10 @@ public class Interface {
                 this.viewMovieList(user);
                 break;
 
+            case 3:
+                this.showMessage("Please Talk to the Librarian");
+                break;
+
             case 4:
                 this.quitProgram();
                 break;
@@ -197,4 +202,7 @@ public class Interface {
     }
 
 
+    public void setTestRun() {
+          this.TESTRUN = true;
+    }
 }
